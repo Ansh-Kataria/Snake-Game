@@ -24,10 +24,18 @@ screen.bgcolor("light blue")
 screen.setup(width=600, height=600)
 screen.tracer(0)
 
+# Register shape
+screen.register_shape("food.gif")
+screen.register_shape("body.gif")
+screen.register_shape("snake_up.gif")
+screen.register_shape("snake_down.gif")
+screen.register_shape("snake_left.gif")
+screen.register_shape("snake_right.gif")
+
 # Snake head
 head = turtle.Turtle()
 head.speed(0)
-head.shape("square")
+head.shape("snake_right.gif")
 head.color("black")
 head.penup()
 head.goto(0, 0)
@@ -36,10 +44,11 @@ head.direction = "stop"
 # Snake Food
 food = turtle.Turtle()
 food.speed(0)
-food.shape("circle")
+food.shape("food.gif")
 food.color("red")
 food.penup()
 food.goto(0, 100)
+
 
 # Pen
 pen = turtle.Turtle()
@@ -57,21 +66,25 @@ pen.write("Score: 0  High Score: 0", align="center", font=("Courier", 24, "norma
 def go_up():
     if head.direction != "down":
         head.direction = "up"
+        head.shape("snake_up.gif")
 
 
 def go_down():
     if head.direction != "up":
         head.direction = "down"
+        head.shape("snake_down.gif")
 
 
 def go_right():
     if head.direction != "left":
         head.direction = "right"
+        head.shape("snake_right.gif")
 
 
 def go_left():
     if head.direction != "right":
         head.direction = "left"
+        head.shape("snake_left.gif")
 
 
 def move():
@@ -131,7 +144,7 @@ while True:
         # Add a segment
         new_segment = turtle.Turtle()
         new_segment.speed(0)
-        new_segment.shape("square")
+        new_segment.shape("body.gif")
         new_segment.color("grey")
         new_segment.penup()
         segments.append(new_segment)
